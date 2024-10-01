@@ -9,6 +9,7 @@ export default function Home() {
       <h1 className="text-6xl font-bold text-white">
         Grupo Espacios Compartidos
       </h1>
+
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
       
         <div className="flex gap-9 items-center flex-col sm:flex-row">
@@ -36,6 +37,7 @@ export default function Home() {
           
         </div>
       </main>
+      
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
         <span
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"

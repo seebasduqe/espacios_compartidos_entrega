@@ -1,19 +1,29 @@
-import { getPool } from "../lib/singlenton_db";
-const pool = getPool();
+import Database from "../lib/singlenton_db";
+import { NextResponse } from "next/server";
+
+const db = Database.instance;
 
 export async function POST(request) {
-
-    try{
+    try {
         const { nombre, descripcion, capacidad } = await request.json();
         
-        const result = await pool.query(
-            `INSERT INTO areas_comunes (nombre, descripcion, capacidad)
-             VALUES ($1, $2, $3) RETURNING *`,
-            [nombre, descripcion, capacidad]
-          );
-        return NextResponse.json(result.rows[0], { status: 201 });
+        // Inserta los datos
+        const insertQuery = `
+            INSERT INTO areas_comunes (nombre, descripcion, capacidad)
+            VALUES (?, ?, ?)`;
+        
+        await db.fetchData(insertQuery, [nombre, descripcion, capacidad]);
+
+        // Consulta para obtener el último registro insertado
+        const selectQuery = `
+            SELECT * FROM areas_comunes 
+            ORDER BY id DESC LIMIT 1`;
+        
+        const result = await db.fetchData(selectQuery, [nombre, descripcion, capacidad]);
+        
+        return NextResponse.json(result[0], { status: 201 });
     } catch (error) {
         console.error('Error:', error);
-        return NextResponse.json({ error: error }, { status: 401 });
+        return NextResponse.json({ error: 'Failed to insert data' }, { status: 500 });
     }
 }
