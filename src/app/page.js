@@ -1,8 +1,13 @@
+"use client";
 import Image from "next/image"
 import Link from 'next/link'
 import { MapPinIcon, ArrowRightIcon } from '@heroicons/react/24/solid'
+import { useAuth } from "./AuthContext"
 
 export default function Home() {
+
+  const { isAuthenticated } = useAuth();
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       
@@ -13,7 +18,7 @@ export default function Home() {
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
       
         <div className="flex gap-9 items-center flex-col sm:flex-row">
-          <Link href="/login">
+          <Link href={isAuthenticated ? "/dashboard" : "/login"}>
             <span
               className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
               target="_blank"
@@ -21,6 +26,17 @@ export default function Home() {
             >
               <MapPinIcon className="h-5 w-5 mr-2" />
               Hacer Reserva
+            </span>
+          </Link>
+
+          <Link href={isAuthenticated ? "/reservas" : "/login"}>
+            <span
+              className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MapPinIcon className="h-5 w-5 mr-2" />
+              Ver Reservas
             </span>
           </Link>
 

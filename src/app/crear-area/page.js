@@ -1,6 +1,7 @@
 "use client"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
+
 import Head from 'next/head'
 import Image from "next/image"
 import { ArrowRightIcon } from '@heroicons/react/24/solid'
@@ -68,7 +69,7 @@ export default function CrearArea() {
 
                 <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
-                <div className="col-span-full">
+                  <div className="col-span-full">
                     <label htmlFor="street-address" className="block text-sm font-medium leading-6 text-gray-400">
                       Nombre
                     </label>

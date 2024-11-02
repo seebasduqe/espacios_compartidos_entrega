@@ -23,7 +23,7 @@ const EditAreaComún = () => {
   useEffect(() => {
     const fetchArea = async () => {
       if (id) {
-        const response = await axios.get(`/api/traer_area_comun`,{params: { id }});
+        const response = await axios.get(`/api/traer_area_comun`, { params: { id } });
         setArea(response.data);
         setNombre(response.data.nombre);
         setDescripcion(response.data.descripcion);
@@ -37,7 +37,7 @@ const EditAreaComún = () => {
     e.preventDefault();
     try {
       console.log({ id, nombre, descripcion, capacidad });
-      await axios.put('/api/editar_area_comun',{ id, nombre, descripcion, capacidad });
+      await axios.put('/api/editar_area_comun', { id, nombre, descripcion, capacidad });
       router.push('/dashboard');
     } catch (error) {
       console.error('Error updating area:', error);
@@ -48,16 +48,16 @@ const EditAreaComún = () => {
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-       <Head>
+      <Head>
         <title>Gestion Espacios</title>
         <meta name="description" content="App web Gestion Espacios" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1 className="text-6xl font-bold text-white">
-            Grupo Espacios Compartidos
-        </h1>
+        Grupo Espacios Compartidos
+      </h1>
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-      
+
         <div className="flex gap-9 items-center flex-col sm:flex-row">
           <form onSubmit={handleSubmit}>
             <div className="space-y-12">
@@ -67,7 +67,7 @@ const EditAreaComún = () => {
 
                 <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
-                <div className="col-span-full">
+                  <div className="col-span-full">
                     <label htmlFor="street-address" className="block text-sm font-medium leading-6 text-gray-400">
                       Nombre
                     </label>
@@ -119,7 +119,7 @@ const EditAreaComún = () => {
                   </div>
 
                 </div>
-              </div>  
+              </div>
             </div>
 
             <div className="mt-6 flex items-center justify-end gap-x-6">

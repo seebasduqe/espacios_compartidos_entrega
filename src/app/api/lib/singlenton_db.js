@@ -1,5 +1,4 @@
 import mysql from 'mysql2/promise';
-
 class Database {
 
     //La variable estática privada #instance se utiliza para almacenar la única instancia de la clase

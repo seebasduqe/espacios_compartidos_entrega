@@ -12,6 +12,8 @@ export async function POST(request) {
   try {
     const results = await db.fetchData(query, [email, password]);
 
+    const idUser = results[0].id;
+    
     if (results.length > 0) {
       // Si las credenciales son válidas
       const token = sign(
@@ -23,7 +25,7 @@ export async function POST(request) {
         "secret"
       );
 
-      const response = NextResponse.json({ token });
+      const response = NextResponse.json({ token, idUser });
 
       response.cookies.set({
         name: "myTokenName",
